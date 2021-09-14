@@ -22,9 +22,10 @@ import java.awt.image.BufferedImage;
 public class DemonicGorillasOverlay extends Overlay
 {
     private static final Color NOT_ACTIVATED_BACKGROUND_COLOR = new Color(255, 66, 66, 150);
+    private static final Color ACTIVATED_BACKGROUND_COLOR = new Color(101, 255, 66, 150);
     private static final int MAX_DISTANCE = 2500;
 
-    private static final int yOffset = -50;
+    private static final int yOffset = -110;
 
     private final Client client;
     private final DemonicGorillasPlugin plugin;
@@ -79,13 +80,13 @@ public class DemonicGorillasOverlay extends Overlay
             net.runelite.api.Point spriteLocation = Perspective.getCanvasTextLocation(client,
                     graphics,
                     gorillaPosition,
-                    String.valueOf(plugin.getCounter()), 150);
+                    String.valueOf(plugin.getCounter()), 190);
             final BufferedImage prayerImage = getPrayerImage(attack);
             imagePanelComponent.getChildren().clear();
             imagePanelComponent.getChildren().add(new ImageComponent(prayerImage));
             imagePanelComponent.setPreferredLocation(new java.awt.Point(spriteLocation.getX(), spriteLocation.getY() + yOffset));
             imagePanelComponent.setBackgroundColor(client.isPrayerActive(attack.getPrayer())
-                    ? ComponentConstants.STANDARD_BACKGROUND_COLOR
+                    ? ACTIVATED_BACKGROUND_COLOR
                     : NOT_ACTIVATED_BACKGROUND_COLOR);
             imagePanelComponent.render(graphics);
         }
