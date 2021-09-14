@@ -5,7 +5,9 @@ import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
 import net.runelite.api.Actor;
 import net.runelite.api.Client;
+import net.runelite.api.Hitsplat;
 import net.runelite.api.events.AnimationChanged;
+import net.runelite.api.events.HitsplatApplied;
 import net.runelite.api.events.InteractingChanged;
 import net.runelite.api.events.NpcDespawned;
 import net.runelite.client.eventbus.Subscribe;
@@ -37,6 +39,11 @@ public class DemonicGorillasPlugin extends Plugin
     @Nullable
     private DemonicGorillasAttack attack;
 
+    @Getter(AccessLevel.PACKAGE)
+    private int counter;
+
+    @Getter(AccessLevel.PACKAGE)
+    @Nullable
     private Actor gorilla;
 
     @Override
@@ -51,6 +58,7 @@ public class DemonicGorillasPlugin extends Plugin
         overlayManager.remove(overlay);
         gorilla = null;
         attack = null;
+        counter = 0;
     }
 
     @Subscribe
@@ -62,6 +70,10 @@ public class DemonicGorillasPlugin extends Plugin
         if (source == null || target == null)
         {
             return;
+        }
+        else if (target == client.getLocalPlayer() && source.getName().equals("Demonic gorilla"))
+        {
+            gorilla = source;
         }
         else if (source == client.getLocalPlayer() && target.getName().equals("Demonic gorilla"))
         {
@@ -79,6 +91,15 @@ public class DemonicGorillasPlugin extends Plugin
         }
     }
 
+    private void checkAnimationChange(DemonicGorillasAttack thisAttack)
+    {
+        if (attack != thisAttack)
+        {
+            attack = thisAttack;
+            counter = 3;
+        }
+    }
+
     @Subscribe
     public void onAnimationChanged(final AnimationChanged event)
     {
@@ -89,15 +110,32 @@ public class DemonicGorillasPlugin extends Plugin
 
         if (gorilla.getAnimation() == DemonicGorillasAttack.MAGIC.getAnimation())
         {
-            attack = DemonicGorillasAttack.MAGIC;
+            checkAnimationChange(DemonicGorillasAttack.MAGIC);
         }
         else if (gorilla.getAnimation() == DemonicGorillasAttack.RANGE.getAnimation())
         {
-            attack = DemonicGorillasAttack.RANGE;
+            checkAnimationChange(DemonicGorillasAttack.RANGE);
         }
         else if (gorilla.getAnimation() == DemonicGorillasAttack.MELEE.getAnimation())
         {
-            attack = DemonicGorillasAttack.MELEE;
+            checkAnimationChange(DemonicGorillasAttack.MELEE);
+        }
+    }
+
+    @Subscribe
+    public void onHitsplatApplied(HitsplatApplied hitsplatApplied)
+    {
+        if (hitsplatApplied.getActor() != client.getLocalPlayer())
+        {
+            return;
+        }
+        if (gorilla != null && hitsplatApplied.getHitsplat().getHitsplatType() == Hitsplat.HitsplatType.BLOCK_ME)
+        {
+            counter--;
+            if (counter < 0)
+            {
+                counter = 2; //Doing another round of the same attack type
+            }
         }
     }
 }
