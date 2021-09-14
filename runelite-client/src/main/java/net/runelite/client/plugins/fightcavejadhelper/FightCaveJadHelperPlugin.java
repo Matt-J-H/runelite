@@ -18,7 +18,7 @@ import net.runelite.client.ui.overlay.OverlayManager;
 	name = "!Fight Cave - Jad Helper",
 	description = "Show what to pray against Jad",
 	tags = {"bosses", "combat", "minigame", "overlay", "prayer", "pve", "pvm"},
-        enabledByDefault = true
+	enabledByDefault = true
 )
 public class FightCaveJadHelperPlugin extends Plugin
 {

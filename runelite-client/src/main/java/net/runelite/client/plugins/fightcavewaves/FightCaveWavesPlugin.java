@@ -27,7 +27,8 @@ import org.apache.commons.lang3.ArrayUtils;
 @PluginDescriptor(
         name = "Fight Cave Waves",
         description = "Displays current and upcoming wave monsters in the Fight Caves",
-        tags = {"bosses", "combat", "minigame", "overlay", "pve", "pvm", "jad", "fire", "cape", "wave", "inferno", "zuk"}
+        tags = {"bosses", "combat", "minigame", "overlay", "pve", "pvm", "jad", "fire", "cape", "wave", "inferno", "zuk"},
+        enabledByDefault = true
 )
 public class FightCaveWavesPlugin extends Plugin
 {
