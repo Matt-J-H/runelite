@@ -13,11 +13,11 @@ import net.runelite.client.plugins.Plugin;
 import javax.inject.Inject;
 
 @PluginDescriptor(
-        name = "Tempoross Notifier",
+        name = "Tempoross Harpoonfish Notifier",
         description = "Notifies you when a double Harpoonfish spot appears."
 )
 @Slf4j
-public class TemporossNotifierPlugin extends Plugin
+public class TemporossHarpoonfishNotifierPlugin extends Plugin
 {
     @Inject
     private Notifier notifier;
