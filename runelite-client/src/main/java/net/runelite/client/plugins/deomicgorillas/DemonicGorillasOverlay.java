@@ -25,7 +25,7 @@ public class DemonicGorillasOverlay extends Overlay
     private static final Color ACTIVATED_BACKGROUND_COLOR = new Color(101, 255, 66, 150);
     private static final int MAX_DISTANCE = 2500;
 
-    private static final int yOffset = -110;
+    private static final int yOffset = -100;
 
     private final Client client;
     private final DemonicGorillasPlugin plugin;
