@@ -16,8 +16,7 @@ import javax.annotation.Nullable;
 import javax.inject.Inject;
 
 @PluginDescriptor(
-        name = "!Vorkath",
-        enabledByDefault = true
+        name = "!Vorkath"
 )
 @Slf4j
 public class VorkathPlugin extends Plugin

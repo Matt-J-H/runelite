@@ -14,6 +14,7 @@ import javax.inject.Inject;
 
 @PluginDescriptor(
         name = "Tempoross Harpoonfish Notifier",
+        enabledByDefault = true,
         description = "Notifies you when a double Harpoonfish spot appears."
 )
 @Slf4j
