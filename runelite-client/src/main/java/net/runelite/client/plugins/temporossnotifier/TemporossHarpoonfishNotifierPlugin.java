@@ -13,7 +13,7 @@ import net.runelite.client.plugins.Plugin;
 import javax.inject.Inject;
 
 @PluginDescriptor(
-        name = "Tempoross Harpoonfish Notifier",
+        name = "!Tempoross Harpoonfish Notifier",
         enabledByDefault = true,
         description = "Notifies you when a double Harpoonfish spot appears."
 )
