@@ -85,9 +85,5 @@ public class VorkathPlugin extends Plugin
 
         System.out.println("Vorkath Animation: " + vorkath.getAnimation());
         currentAnimationID = vorkath.getAnimation();
-        //if (vorkath.getAnimation() == fireballAnimation)
-        //{
-        //    checkAnimationChange(DemonicGorillasAttack.MAGIC);
-        //}
     }
 }

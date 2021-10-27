@@ -218,6 +218,8 @@ public class EventBus
 	{
 		for (final Subscriber subscriber : subscribers.get(event.getClass()))
 		{
+			//if (subscriber.method == net.runelite.client.plugins.blackjack.BlackjackPlugin.onAnimationChanged())
+
 			try
 			{
 				subscriber.invoke(event);
